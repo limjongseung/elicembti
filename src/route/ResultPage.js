@@ -1,19 +1,22 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "../assets/scss/result.scss";
+
+// 이곳에서 MBTI 정보를 가져오는 함수 또는 데이터 파일을 import하세요.
+// 이 예시에서는 데이터를 하드 코딩합니다.
+// import MBTIData from "./MBTIData"; // 예시 데이터 파일
+
 function ResultPage(props) {
 	const whatMBTI = props.MBTI;
 	const [res, setRes] = useState("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (whatMBTI) {
 			setRes(whatMBTI);
 		}
-	});
-
-	let navigate = useNavigate();
-
-	let data = {
+	}, [whatMBTI]); // `whatMBTI`가 변경될 때만 실행
+	let MBTIData = {
 		ISTJ: {
 			subtitle: "당신은 ISTJ입니다.",
 			cont1: "ESTJ는 아주 계획적이고 주도면밀합니다.",
@@ -95,18 +98,30 @@ function ResultPage(props) {
 			cont2: "INFP를 좋아합니다.",
 		},
 	};
+	const MBTIInfo = MBTIData[res]; // MBTI 정보를 데이터 파일에서 가져옴
 
-	// res에는 결정된 MBTI값이 들어있습니다.
-	// res에 ESTJ라는 값이 들어있어요. => data[ESTJ].subtitle
 	return (
 		<>
-			{res && (
+			{MBTIInfo ? (
 				<div className="result_wrapper">
 					<div className="result_page">
 						<h1>결과!</h1>
-						<div>{data[res].subtitle}</div>
-						<div>{data[res].cont1}</div>
-						<div>{data[res].cont2}</div>
+						<div>{MBTIData[whatMBTI].subtitle}</div>
+						<div>{MBTIData[whatMBTI].cont1}</div>
+						<div>{MBTIData[whatMBTI].cont2}</div>
+						<button
+							onClick={() => {
+								navigate("/");
+							}}
+						>
+							다시하기
+						</button>
+					</div>
+				</div>
+			) : (
+				<div className="result_wrapper">
+					<div className="result_page">
+						<h1>결과가 없습니다.</h1>
 						<button
 							onClick={() => {
 								navigate("/");
