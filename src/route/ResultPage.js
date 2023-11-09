@@ -106,9 +106,7 @@ function ResultPage(props) {
 				<div className="result_wrapper">
 					<div className="result_page">
 						<h1>결과!</h1>
-						<div>{MBTIData[whatMBTI].subtitle}</div>
-						<div>{MBTIData[whatMBTI].cont1}</div>
-						<div>{MBTIData[whatMBTI].cont2}</div>
+						<div>{whatMBTI}</div>
 						<button
 							onClick={() => {
 								navigate("/");
