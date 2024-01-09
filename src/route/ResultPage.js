@@ -29,7 +29,8 @@ function ResultPage(props) {
 		},
 		ESTP: {
 			subtitle: "당신은 ESTP입니다.",
-			cont1: "ESTP는 아주 계획적이고 주도면밀합니다. 그리고 성격이 아주 좋습니다.",
+			cont1:
+				"ESTP는 아주 계획적이고 주도면밀합니다. 그리고 성격이 아주 좋습니다.",
 			cont2: "제 자신을 가장 좋아합니다.",
 		},
 		ESTJ: {
@@ -107,6 +108,9 @@ function ResultPage(props) {
 					<div className="result_page">
 						<h1>결과!</h1>
 						<div>{whatMBTI}</div>
+						<div>{MBTIInfo.subtitle}</div>
+						<div>{MBTIInfo.cont1}</div>
+						<div>{MBTIInfo.cont2}</div>
 						<button
 							onClick={() => {
 								navigate("/");
